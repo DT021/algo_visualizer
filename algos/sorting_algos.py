@@ -4,6 +4,7 @@ def swap(arr, i, j):
   arr[j] = temp
   return arr
 
+# Bubble sort: Worst Case = Best Case = O(n^2)
 def bubble(arr, ascending=True):
   for i in range(0, len(arr)-1):
     for j in range(0, len(arr) - i - 1):
@@ -17,9 +18,25 @@ def bubble(arr, ascending=True):
   print(arr)
   return arr
 
+def selection(arr, ascending=True):
+  for i in range(0, len(arr)):
+    min = i
+    for j in range(i + 1, len(arr)):
+      if(ascending == True):
+        if (arr[j] < arr[min]):
+          min = j
+      else:
+        if (arr[min] < arr[j]):
+          min = j
+    if (min != i):
+      print(arr)
+      arr = swap(arr, min, i)
+  print(arr)
+  return arr
+
 def main():
   arr = [4,2,3,1,5]
-  bubble(arr, False)
+  selection(arr, False)
 
 if __name__ == "__main__":
   main()
