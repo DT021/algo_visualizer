@@ -35,12 +35,27 @@ def selection(arr, ascending=True):
   print(arr)
   return arr
 
-# Insertion sort
-def insertion(arr, )
+# Insertion sort: Worst Case = O(n^2), Best Case = O(n)
+def insertion(arr, ascending=True):
+  for j in range(1, len(arr)):
+    key = arr[j]
+    i = j - 1
+    if ascending == True:
+      while (i >= 0 and arr[i] > key):
+        swap(arr, i, i + 1)
+        i -= 1
+    else:
+      while (i >= 0 and arr[i] < key):
+        swap(arr, i, i + 1)
+        i -= 1
+  return arr
+
+
 
 def main():
   arr = [4,2,3,1,5]
-  bubble(arr, False)
+  insertion(arr, True)
+  print(arr)
 
 if __name__ == "__main__":
   main()
