@@ -50,12 +50,49 @@ def insertion(arr, ascending=True):
         i -= 1
   return arr
 
+# Merge sort - Best Case = Worst Case = O(nlogn)
+def mergeSort(arr, ascending):
+  if(len(arr) > 1):
+    mid = len(arr) // 2
+    L = arr[:mid]
+    R = arr[mid:]
+    mergeSort(L, ascending)
+    mergeSort(R, ascending)
+    i = j = k = 0
+    while (i < len(L) and j < len(R)):
+      if (ascending == True):
+        if L[i] <= R[j]:
+          arr[k] = L[i]
+          i += 1
+        else:
+          arr[k] = R[j]
+          j += 1
+      else:
+        if L[i] > R[j]:
+          arr[k] = L[i]
+          i += 1
+        else:
+          arr[k] = R[j]
+          j += 1
+      k += 1
+
+    while i < len(L):
+      arr[k] = L[i]
+      i += 1
+      k += 1
+
+    while j < len(R):
+      arr[k] = R[j]
+      j += 1
+      k += 1
+    print("Merging ", L, R)
+    print(arr)
+
 
 
 def main():
   arr = [4,2,3,1,5]
-  insertion(arr, True)
-  print(arr)
+  mergeSort(arr, False)
 
 if __name__ == "__main__":
   main()
