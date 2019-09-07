@@ -1,3 +1,14 @@
+import random
+import numpy as np
+
+def arrgen(lo=0, hi=1000, s=10, tosort=False):
+  random.seed(42)
+  arr = np.random.randint(low=lo,high=hi,size=s)
+  if tosort == True:
+    return sorted(arr)
+  else:
+    return arr
+    
 def swap(arr, i, j):
   temp = arr[i]
   arr[i] = arr[j]
@@ -88,11 +99,11 @@ def mergeSort(arr, ascending):
     print("Merging ", L, R)
     print(arr)
 
-
-
 def main():
-  arr = [4,2,3,1,5]
+  # arr = [4,2,3,1,5]
+  arr = arrgen(s=100)
   mergeSort(arr, False)
+  print(arr)
 
 if __name__ == "__main__":
   main()
