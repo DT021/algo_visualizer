@@ -4,19 +4,26 @@ import sorting_algos as srt
 
 plt.style.use('seaborn-pastel')
 
-def animate(arr, rects):
-  for rect, val in zip(rects, arr):
-    rect.set_height(val)
-
 def main():
+  # Initialization
   arr = srt.arrgen(lo=0, hi=10, s=10)
-  print(arr)
-  gen = srt.bubble(arr, ascending=True)
-  print(arr)
+  temp = srt.copy.deepcopy(arr)
+  a, frames = srt.bubble(temp, ascending=True)
+
+  # Plotting image
   fig, ax = plt.subplots(figsize=(6, 6))
   ax.set_title('Sorting Visualizer')
   ax.set_xlabel('Values')
-  rects = ax.bar(arr, range(len(arr)))
+  rects = ax.bar(range(len(arr)),arr)
+
+  # Animate
+  def animate(i):
+    for f in frames:
+      for rect, y in zip(rects, f):
+        rect.set_height(y)
+
+  # # Show animation
+  anim = FuncAnimation(fig,animate,frames=len(frames),interval=1, blit=False)
   plt.show()
   pass
 
