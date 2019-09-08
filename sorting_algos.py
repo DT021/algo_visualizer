@@ -1,13 +1,18 @@
 import random
 import numpy as np
 
-def arrgen(lo=0, hi=1000, s=10, tosort=False):
+def arrgen(lo=0, hi=100, s=100, tosort=False, rand=False):
   random.seed(42)
-  arr = np.random.randint(low=lo,high=hi,size=s)
-  if tosort == True:
-    return sorted(arr)
-  else:
+  if rand == True or (s != hi):
+    arr = np.random.randint(low=lo, high=hi, size=s)
     return arr
+  else:
+    arr = np.arange(hi)
+    if tosort == False:
+      np.random.shuffle(arr)
+      return arr
+    else:
+      return arr
     
 def swap(arr, i, j):
   temp = arr[i]
@@ -26,7 +31,6 @@ def bubble(arr, ascending=True):
         if (arr[j] < arr[j + 1]):
           print(arr)
           arr = swap(arr, j, j+1)
-  print(arr)
   return arr
 
 # Selection sort: Worst Case = Best Case = O(n^2)
@@ -62,46 +66,42 @@ def insertion(arr, ascending=True):
   return arr
 
 # Merge sort - Best Case = Worst Case = O(nlogn)
-def mergeSort(arr, ascending):
-  if(len(arr) > 1):
-    mid = len(arr) // 2
-    L = arr[:mid]
-    R = arr[mid:]
-    mergeSort(L, ascending)
-    mergeSort(R, ascending)
-    i = j = k = 0
-    while (i < len(L) and j < len(R)):
-      if (ascending == True):
-        if L[i] <= R[j]:
-          arr[k] = L[i]
-          i += 1
-        else:
-          arr[k] = R[j]
-          j += 1
+def mergeSort(arr, ascending=True):
+  mergeHelp(arr, 0, len(arr))
+
+def mergeHelp(arr, start, end, ascending=True):
+  if(start < 1):
+    mid = (start+end)/2
+    mergeHelp(arr, start, mid)
+    mergeHelp(arr, mid + 1, end)
+    return merge(arr, start, mid, end, ascending)
+
+def merge(left, right, ascending):
+  res = []
+  i = j = 0
+  while (i < len(left) and j < len(right)):
+    if ascending == True:
+      if (left[i] <= right[j]):
+        res.append(left[i])
+        i += 1
       else:
-        if L[i] > R[j]:
-          arr[k] = L[i]
-          i += 1
-        else:
-          arr[k] = R[j]
-          j += 1
-      k += 1
-
-    while i < len(L):
-      arr[k] = L[i]
-      i += 1
-      k += 1
-
-    while j < len(R):
-      arr[k] = R[j]
-      j += 1
-      k += 1
-    print("Merging ", L, R)
-    print(arr)
+        res.append(right[j])
+        j += 1
+    else:
+      if (left[i] >= right[j]):
+        res.append(left[i])
+        i += 1
+      else:
+        res.append(right[j])
+        j += 1
+  res += left[i:]
+  res += right[j:]
+  return res
 
 def main():
   # arr = [4,2,3,1,5]
-  arr = arrgen(s=100)
+  arr = arrgen(lo=0, hi=10, s=10)
+  print(arr)
   mergeSort(arr, False)
   print(arr)
 
