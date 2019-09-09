@@ -18,12 +18,13 @@ def main():
 
   # Animate
   def animate(i):
-    for f in frames:
+    print(i)
+    for f in i:
+      print(f)
       for rect, y in zip(rects, f):
         rect.set_height(y)
-
-  # # Show animation
-  anim = FuncAnimation(fig,animate,frames=len(frames),interval=1, blit=False)
+  # Show animation
+  anim = FuncAnimation(fig,animate,frames=len(frames),interval=200, blit=False)
   plt.show()
   pass
 
