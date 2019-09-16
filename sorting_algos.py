@@ -21,7 +21,6 @@ def swap(arr, i, j):
   arr[j] = temp
   return arr
 
-
 # Bubble sort: Worst Case = Best Case = O(n^2)
 def bubble(arr, ascending=True):
   frames = []
@@ -73,44 +72,43 @@ def insertion(arr, ascending=True):
   return arr,frames
 
 # Merge sort - Best Case = Worst Case = O(nlogn)
-def mergeSort(arr, ascending=True):
-  mergeHelp(arr, 0, len(arr))
 
-def mergeHelp(arr, start, end, ascending=True):
-  if(start < 1):
-    mid = (start+end)/2
-    mergeHelp(arr, start, mid)
-    mergeHelp(arr, mid + 1, end)
-    return merge(arr, start, mid, end, ascending)
+def merge(left, right, frames): 
+    if not len(left) or not len(right): 
+        return left or right 
+  
+    result = [] 
+    i, j = 0, 0
+    while (len(result) < len(left) + len(right)): 
+        if left[i] < right[j]: 
+            result.append(left[i]) 
+            i+= 1
+        else: 
+            result.append(right[j]) 
+            j+= 1
+        if i == len(left) or j == len(right): 
+            result.extend(left[i:] or right[j:]) 
+            break 
+    frames.append(copy.deepcopy(result))
+    return result 
+  
+def mergesort(list, frames): 
+    if len(list) < 2: 
+        return list
 
-def merge(left, right, ascending):
-  res = []
-  i = j = 0
-  while (i < len(left) and j < len(right)):
-    if ascending == True:
-      if (left[i] <= right[j]):
-        res.append(left[i])
-        i += 1
-      else:
-        res.append(right[j])
-        j += 1
-    else:
-      if (left[i] >= right[j]):
-        res.append(left[i])
-        i += 1
-      else:
-        res.append(right[j])
-        j += 1
-  res += left[i:]
-  res += right[j:]
-  return res
-
+    middle = len(list) // 2
+    left = mergesort(list[:middle], frames) 
+    right = mergesort(list[middle:], frames) 
+  
+    return merge(left, right, frames)
+    
 def main():
   # arr = [4,2,3,1,5]
   arr = arrgen(lo=0, hi=10, s=10)
   print(arr)
-  _,f = insertion(arr, False)
-  print(f)
+  frames = []
+  f = mergesort(arr, frames)
+  print(frames)
 
 if __name__ == "__main__":
   main()

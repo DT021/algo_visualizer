@@ -5,11 +5,17 @@ from matplotlib.collections import PatchCollection
 
 plt.style.use('seaborn-pastel')
 
-def main():
+def showBasicSorts(method):
   # Initialization
-  arr = srt.arrgen(lo=0, hi=50, s=50)
+  arr = srt.arrgen(lo=0, hi=55, s=55)
   temp = srt.copy.deepcopy(arr)
-  a, frames = srt.bubble(temp, ascending=True)
+  frames = []
+  if method == "insertion":
+    _, frames = srt.insertion(temp, ascending=True)
+  elif (method == "selection"):
+    _, frames = srt.selection(temp, ascending=True)
+  elif (method == "bubble"):
+    _, frames = srt.bubble(temp, ascending=True)
 
   # Plotting image
   fig, ax = plt.subplots(figsize=(6, 6))
@@ -24,8 +30,45 @@ def main():
     return (rects)
 
   # Show animation
-  anim = animation.FuncAnimation(fig,animate,frames=len(frames),interval=len(frames),repeat=False, blit=False)
+  anim = animation.FuncAnimation(fig, animate, frames=len(frames), interval=len(frames), repeat=False, blit=False)
+  Writer = animation.writers['imagemagick']
+  writer = Writer(fps=15, metadata=dict(artist='Me'), bitrate=1800)
+  loc = method + ".gif"
+  anim.save(loc, writer=writer)
   plt.show()
+
+def showMergeSort():
+  # Initialization
+  arr = srt.arrgen(lo=0, hi=105, s=105)
+  temp = srt.copy.deepcopy(arr).tolist()
+  frames = []
+  srt.mergesort(temp, frames)
+
+  # Plotting image
+  fig, ax = plt.subplots(figsize=(6, 6))
+  ax.set_title('Sorting Visualizer')
+  ax.set_xlabel('Values')
+  rects = ax.bar(range(len(arr)), arr)
+
+  # Animate
+  def animate(fi):
+    for rect, y in zip(rects, frames[fi]):
+      rect.set_height(y)
+    return (rects)
+
+  # Show animation
+  anim = animation.FuncAnimation(fig, animate, frames=len(frames), interval=len(frames), repeat=False, blit=False)
+  
+  # Set up formatting for the movie files
+  Writer = animation.writers['imagemagick']
+  writer = Writer(fps=15, metadata=dict(artist='Me'), bitrate=1800)
+  anim.save('ms.gif', writer=writer)
+  plt.show()
+
+def main():
+  # showBasicSorts("insertion")
+  showMergeSort()
+  
 
 if __name__ == "__main__":
   main()
