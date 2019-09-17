@@ -42,6 +42,75 @@ def showBasicSorts(method):
   anim.save(loc, writer=writer)
   plt.show()
 
+def plotlyBasicSorts(method):
+  # Initialization
+  arr = srt.arrgen(lo=0, hi=105, s=105)
+  temp = srt.copy.deepcopy(arr).tolist()
+  frames = []
+  if method == "Insertion sort":
+    _, frames = srt.insertion(temp, ascending=True)
+  elif (method == "Selection sort"):
+    _, frames = srt.selection(temp, ascending=True)
+  elif (method == "Bubble sort"):
+    _, frames = srt.bubble(temp, ascending=True)
+
+  # Create figure
+  figure = {
+    'data': [{
+      'type': 'bar',
+      'x': list(srt.np.linspace(0, len(arr), num=len(arr))),
+      'y': arr
+    }],
+    'layout': {
+        'xaxis': {
+        'title': 'X',
+        'gridcolor': '#FFFFFF',
+        'linecolor': '#000',
+        'linewidth': 1,
+        'zeroline': False,
+        'autorange': True
+      },
+      'yaxis': {
+        'title': 'Y',
+        'gridcolor': '#FFFFFF',
+        'linecolor': '#000',
+        'linewidth': 1,
+        'autorange': True
+      },
+      'title': method,
+      'updatemenus': [{
+        'type': 'buttons',
+        'buttons': [{
+          'label': 'Play',
+          'method': 'animate',
+          'args': [None, {
+            'frame': {
+              'duration': 100,
+              'redraw': True
+            },
+            'fromcurrent': True,
+            'transition': {
+              'duration': 300,
+              'easing': 'quadratic-in-out'
+            }
+          }]
+        }]
+      }]
+    },
+    'frames': []   
+  }
+
+  for k in range(len(frames)):
+    frame = {"data": {
+      'type': 'bar',
+      "x": list(srt.np.linspace(0, len(arr), num=len(arr))),
+      "y": frames[k]
+    }}
+    figure["frames"].append(frame)
+
+  fig = go.Figure(figure)
+  fig.show()
+
 def showMergeSort():
   # Initialization
   arr = srt.arrgen(lo=0, hi=105, s=105)
@@ -71,16 +140,79 @@ def showMergeSort():
   plt.show()
 
 def plotlyMS():
-  fig = go.Figure(
-    
-  )
-  pass
+  # Initialization
+  arr = srt.arrgen(lo=0, hi=105, s=105)
+  temp = srt.copy.deepcopy(arr).tolist()
+  frames = []
+  srt.mergesort(temp, frames)
+ 
+  # Create figure
+  figure = {
+    'data': [{
+      'type': 'bar',
+      'x': list(srt.np.linspace(0, len(arr), num=len(arr))),
+      'y': arr
+    },{
+      'type': 'bar',
+      'x': list(srt.np.linspace(0, len(arr), num=len(arr))),
+      'y': arr
+    }],
+    'layout': {
+        'xaxis': {
+        'title': 'X',
+        'gridcolor': '#FFFFFF',
+        'linecolor': '#000',
+        'linewidth': 1,
+        'zeroline': False,
+        'autorange': True
+      },
+      'yaxis': {
+        'title': 'Y',
+        'gridcolor': '#FFFFFF',
+        'linecolor': '#000',
+        'linewidth': 1,
+        'autorange': True
+      },
+      'title': "Merge Sort",
+      'updatemenus': [{
+        'type': 'buttons',
+        'buttons': [{
+          'label': 'Play',
+          'method': 'animate',
+          'args': [None, {
+            'frame': {
+              'duration': 100,
+              'redraw': True
+            },
+            'fromcurrent': True,
+            'transition': {
+              'duration': 300,
+              'easing': 'quadratic-in-out'
+            }
+          }]
+        }]
+      }]
+    },
+    'frames': []   
+  }
 
+  for k in range(len(frames)):
+    frame = {"data": {
+      'type': 'bar',
+      "x": list(srt.np.linspace(0, len(arr), num=len(arr))),
+      "y": frames[k]
+    }}
+    figure["frames"].append(frame)
+
+  fig = go.Figure(figure)
+  fig.show()
+  pass
 
 def main():
   # showBasicSorts("insertion")
-  showMergeSort()
-  
+  # showMergeSort()
+  plotlyBasicSorts("Selection sort")
+  # plotlyMS()
 
 if __name__ == "__main__":
   main()
