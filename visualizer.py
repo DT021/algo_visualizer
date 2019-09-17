@@ -1,7 +1,12 @@
+# Matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import sorting_algos as srt
 from matplotlib.collections import PatchCollection
+
+# Plotly
+import plotly.express as px
+import plotly.graph_objects as go
 
 plt.style.use('seaborn-pastel')
 
@@ -64,6 +69,13 @@ def showMergeSort():
   writer = Writer(fps=15, metadata=dict(artist='Me'), bitrate=1800)
   anim.save('ms.gif', writer=writer)
   plt.show()
+
+def plotlyMS():
+  fig = go.Figure(
+    
+  )
+  pass
+
 
 def main():
   # showBasicSorts("insertion")
