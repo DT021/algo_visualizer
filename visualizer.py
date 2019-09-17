@@ -48,7 +48,6 @@ def plotlyBasicSorts(method):
   temp = srt.copy.deepcopy(arr).tolist()
   frames = []
   if method == "Insertion sort":
-    arr =
     _, frames = srt.insertion(temp, ascending=True)
   elif (method == "Selection sort"):
     _, frames = srt.selection(temp, ascending=True)

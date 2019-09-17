@@ -9,17 +9,22 @@ app = dash.Dash()
 app.scripts.config.serve_locally = True
 
 app.layout = html.Div(children=[
-  dcc.Dropdown(
-        id='dropdown',
-        options=[
-          {'label': 'Merge Sort', 'value': 'sort_1'},
-          {'label': 'Selection Sort', 'value': 'sort_2'},
-          {'label': 'Insertion Sort', 'value': 'sort_3'},
-          {'label': 'Bubble Sort', 'value': 'sort_4'},
-        ],
-        value='sort_1'
-    ),
-  dcc.Loading(id="loading-1", children=[dcc.Graph(id='graph')], type="default"),
+  dcc.Graph(id='graph', figure=vs.plotlyMS()),
+  dcc.Graph(id='graph', figure=vs.plotlyBasicSorts("Selection sort")),
+  dcc.Graph(id='graph', figure=vs.plotlyBasicSorts("Insertion sort")),
+  dcc.Graph(id='graph', figure= vs.plotlyBasicSorts("Bubble sort")),
+  
+  # dcc.Dropdown(
+  #       id='dropdown',
+  #       options=[
+  #         {'label': 'Merge Sort', 'value': 'sort_1'},
+  #         {'label': 'Selection Sort', 'value': 'sort_2'},
+  #         {'label': 'Insertion Sort', 'value': 'sort_3'},
+  #         {'label': 'Bubble Sort', 'value': 'sort_4'},
+  #       ],
+  #       value='sort_1'
+  #   ),
+  # dcc.Loading(id="loading-1", children=[dcc.Graph(id='graph')], type="default"),
 ])
 
 @app.callback(Output("loading-1", "children"), [Input("dropdown", "value")])
