@@ -104,7 +104,7 @@ def mergesort(list, frames):
     
 def main():
   # arr = [4,2,3,1,5]
-  arr = arrgen(lo=0, hi=10, s=10)
+  arr = arrgen(lo=0, hi=100, s=100)
   print(arr)
   frames = []
   f = mergesort(arr, frames)

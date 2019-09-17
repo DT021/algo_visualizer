@@ -44,10 +44,11 @@ def showBasicSorts(method):
 
 def plotlyBasicSorts(method):
   # Initialization
-  arr = srt.arrgen(lo=0, hi=105, s=105)
+  arr = srt.arrgen(lo=0, hi=55, s=55)
   temp = srt.copy.deepcopy(arr).tolist()
   frames = []
   if method == "Insertion sort":
+    arr =
     _, frames = srt.insertion(temp, ascending=True)
   elif (method == "Selection sort"):
     _, frames = srt.selection(temp, ascending=True)
@@ -85,12 +86,12 @@ def plotlyBasicSorts(method):
           'method': 'animate',
           'args': [None, {
             'frame': {
-              'duration': 100,
+              'duration': 10,
               'redraw': True
             },
             'fromcurrent': True,
             'transition': {
-              'duration': 300,
+              'duration': 30,
               'easing': 'quadratic-in-out'
             }
           }]
@@ -109,7 +110,7 @@ def plotlyBasicSorts(method):
     figure["frames"].append(frame)
 
   fig = go.Figure(figure)
-  fig.show()
+  return fig
 
 def showMergeSort():
   # Initialization
@@ -205,8 +206,7 @@ def plotlyMS():
     figure["frames"].append(frame)
 
   fig = go.Figure(figure)
-  fig.show()
-  pass
+  return fig
 
 def main():
   # showBasicSorts("insertion")
