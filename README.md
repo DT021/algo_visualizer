@@ -4,18 +4,13 @@ This is a simple python script that generates visualizations for sorting algorit
 
 Here are the results of the few algorithms I visualized.
 
-### Merge sort
-![Merge sort](ms.gif)
+## Python version
 
-### Bubble sort
-![Bubble sort](bubble.gif)
+### Demo of the Dash App
 
-### Selection sort
-![Selection sort](selection.gif)
-
-### Insertion sort
-![Insertion sort](insertion.gif)
+![Demo](demo.gif)
 
 ## Running the program
-> Make sure to have matplotlib and numpy installed
-> python visualizer.py
+> Make sure to have matplotlib, dash, plotly and numpy installed
+Then, run:
+> cd py && python3 app.py
