@@ -21,6 +21,13 @@ def swap(arr, i, j):
   arr[j] = temp
   return arr
 
+def genBubble(arr):
+  for i in range(0, len(arr)):
+    for j in range(0, len(arr) - i - 1):
+      if (arr[j] > arr[j + 1]):
+        swap(arr, j, j + 1)
+        yield arr
+
 # Bubble sort: Worst Case = Best Case = O(n^2)
 def bubble(arr, ascending=True):
   frames = []

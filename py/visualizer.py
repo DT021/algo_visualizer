@@ -210,8 +210,9 @@ def plotlyMS():
 def main():
   # showBasicSorts("insertion")
   # showMergeSort()
-  plotlyBasicSorts("Selection sort")
+  # plotlyBasicSorts("Selection sort")
   # plotlyMS()
+  pass
 
 if __name__ == "__main__":
   main()

@@ -41,4 +41,4 @@ app.layout = html.Div(children=[
 #     return dcc.Graph(id='graph', figure=vs.plotlyMS())
 
 if __name__ == "__main__":
-  app.run_server(debug=True)
+  app.run_server(debug=False)
