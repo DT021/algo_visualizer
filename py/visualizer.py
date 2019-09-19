@@ -44,14 +44,20 @@ def showBasicSorts(method):
 
 def plotlyBasicSorts(method):
   # Initialization
-  arr = srt.arrgen(lo=0, hi=55, s=55)
-  temp = srt.copy.deepcopy(arr).tolist()
+  arr = []
+  temp = []
   frames = []
   if method == "Insertion sort":
+    arr = srt.arrgen(lo=0, hi=15, s=15)
+    temp = srt.copy.deepcopy(arr).tolist()
     _, frames = srt.insertion(temp, ascending=True)
   elif (method == "Selection sort"):
+    arr = srt.arrgen(lo=0, hi=35, s=35)
+    temp = srt.copy.deepcopy(arr).tolist()
     _, frames = srt.selection(temp, ascending=True)
   elif (method == "Bubble sort"):
+    arr = srt.arrgen(lo=0, hi=15, s=15)
+    temp = srt.copy.deepcopy(arr).tolist()
     _, frames = srt.bubble(temp, ascending=True)
 
   # Create figure
