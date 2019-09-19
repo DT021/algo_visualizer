@@ -6,7 +6,8 @@ import visualizer as vs
 from dash.dependencies import Input, Output, State
 
 app = dash.Dash()
-app.scripts.config.serve_locally = True
+
+server = app.server
 
 app.layout = html.Div(children=[
   dcc.Graph(id='graph1', figure=vs.plotlyMS()),
