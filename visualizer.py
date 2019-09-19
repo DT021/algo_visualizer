@@ -213,6 +213,7 @@ def plotlyMS():
   fig = go.Figure(figure)
   return fig
 
+
 def main():
   # showBasicSorts("insertion")
   # showMergeSort()
