@@ -24,6 +24,7 @@ This repository contains a dash app that uses plotly to visualize a few common s
 - dash-renderer==1.0.1
 - dash-table==4.2.0
 - numpy==1.16.4
+- matplotlib==3.1.0
 
 ## Quick Start Guide
 1. Installing dependencies

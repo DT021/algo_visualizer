@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import sorting_algos as srt
 from matplotlib.collections import PatchCollection
-
+import pandas as pd
 # Plotly
 import plotly.express as px
 import plotly.graph_objects as go
@@ -48,15 +48,15 @@ def plotlyBasicSorts(method):
   temp = []
   frames = []
   if method == "Insertion sort":
-    arr = srt.arrgen(lo=0, hi=15, s=15)
+    arr = srt.arrgen(lo=0, hi=25, s=25)
     temp = srt.copy.deepcopy(arr).tolist()
     _, frames = srt.insertion(temp, ascending=True)
   elif (method == "Selection sort"):
-    arr = srt.arrgen(lo=0, hi=35, s=35)
+    arr = srt.arrgen(lo=0, hi=25, s=25)
     temp = srt.copy.deepcopy(arr).tolist()
     _, frames = srt.selection(temp, ascending=True)
   elif (method == "Bubble sort"):
-    arr = srt.arrgen(lo=0, hi=15, s=15)
+    arr = srt.arrgen(lo=0, hi=25, s=25)
     temp = srt.copy.deepcopy(arr).tolist()
     _, frames = srt.bubble(temp, ascending=True)
 
@@ -68,11 +68,11 @@ def plotlyBasicSorts(method):
       'y': arr
     }],
     'layout': {
-        'xaxis': {
+      'xaxis': {
         'title': 'X',
         'gridcolor': '#FFFFFF',
         'linecolor': '#000',
-        'linewidth': 1,
+        'linewidth': 0,
         'zeroline': False,
         'autorange': True
       },
@@ -80,10 +80,10 @@ def plotlyBasicSorts(method):
         'title': 'Y',
         'gridcolor': '#FFFFFF',
         'linecolor': '#000',
-        'linewidth': 1,
+        'linewidth': 0,
         'autorange': True
       },
-      'title': method,
+      'title': method + ' - Iterations: ' + str(len(frames)),
       'updatemenus': [{
         'type': 'buttons',
         'buttons': [{
@@ -91,13 +91,13 @@ def plotlyBasicSorts(method):
           'method': 'animate',
           'args': [None, {
             'frame': {
-              'duration': 10,
+              'duration': 30,
               'redraw': True
             },
             'fromcurrent': True,
             'transition': {
               'duration': 30,
-              'easing': 'quadratic-in-out'
+              'easing': 'quad-in-out'
             }
           }]
         }]
@@ -106,11 +106,13 @@ def plotlyBasicSorts(method):
     'frames': []   
   }
 
+  # Update frame
   for k in range(len(frames)):
     frame = {"data": {
       'type': 'bar',
       "x": list(srt.np.linspace(0, len(arr), num=len(arr))),
-      "y": frames[k]
+      "y": frames[k],
+      "name": 'f-' + str(k)
     }}
     figure["frames"].append(frame)
 
@@ -147,7 +149,7 @@ def showMergeSort():
 
 def plotlyMS():
   # Initialization
-  arr = srt.arrgen(lo=0, hi=105, s=105)
+  arr = srt.arrgen(lo=0, hi=25, s= 25)
   temp = srt.copy.deepcopy(arr).tolist()
   frames = []
   srt.mergesort(temp, frames)
@@ -179,7 +181,7 @@ def plotlyMS():
         'linewidth': 1,
         'autorange': True
       },
-      'title': "Merge Sort",
+      'title': "Merge Sort" + ' - Iterations: ' + str(len(frames)),
       'updatemenus': [{
         'type': 'buttons',
         'buttons': [{
@@ -214,6 +216,7 @@ def plotlyMS():
   return fig
 
 def main():
+  plotlyBasicSorts("Selection sort")
   pass
 
 if __name__ == "__main__":
