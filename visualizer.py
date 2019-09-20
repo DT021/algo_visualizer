@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import sorting_algos as srt
 from matplotlib.collections import PatchCollection
+
 # Plotly
 import plotly.express as px
 import plotly.graph_objects as go
