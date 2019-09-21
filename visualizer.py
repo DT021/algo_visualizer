@@ -189,12 +189,12 @@ def plotlyMS():
           'method': 'animate',
           'args': [None, {
             'frame': {
-              'duration': 100,
+              'duration': 30,
               'redraw': True
             },
             'fromcurrent': True,
             'transition': {
-              'duration': 300,
+              'duration': 30,
               'easing': 'quadratic-in-out'
             }
           }]
@@ -216,7 +216,6 @@ def plotlyMS():
   return fig
 
 def main():
-  plotlyBasicSorts("Selection sort")
   pass
 
 if __name__ == "__main__":
