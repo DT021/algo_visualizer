@@ -14,8 +14,8 @@ app.layout = html.Div(className="main", children=[
   html.A('Refresh', href='/'),
   dcc.Graph(id='graph1', figure=vs.plotlyMS()),
   dcc.Graph(id='graph2', figure=vs.plotlyBasicSorts("Selection sort")),
-  dcc.Graph(id='graph3', figure=vs.plotlyBasicSorts("Insertion sort")),
-  dcc.Graph(id='graph4', figure= vs.plotlyBasicSorts("Bubble sort")),
+  dcc.Graph(id='graph3', figure=vs.plotlyBasicSorts("Insertion sort"))
+  # dcc.Graph(id='graph4', figure= vs.plotlyBasicSorts("Bubble sort")),
 ])
 
 if __name__ == "__main__":
